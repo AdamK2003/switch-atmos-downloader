@@ -80,6 +80,8 @@ if [ "$asset2name" != "fusee-primary.bin" ]; then
     exit 3
   fi
   assetremoved="1"
+else
+  assetremoved="0"
 fi
 
 # ask user for atmos version (mesosphere/no mesosphere)
@@ -87,8 +89,8 @@ fi
 if [[ $assetremoved = 0 ]]; then
   if [[ $patharg = "0" ]]; then
     echo "Mesosphere zip? (default is yes)"
-    read -p "yes/no > " mesoinput
-    if [[ "$mesoinput" = "no" ]]; then
+    read -p "y/n > " mesoinput
+    if [[ "$mesoinput" = "n" ]]; then
       meso="0"
       echo "Using zip without mesosphere"
     else
@@ -143,8 +145,8 @@ if [[ $patcheswarn = 1 ]]; then # sigpatches warning
 fi
 if [[ $patharg = "0" ]]; then
   echo "Do you want to continue?"
-  read -p "yes/no > " continueinput
-  if [[ "$continueinput" = "no" ]]; then
+  read -p "y/n > " continueinput
+  if [[ "$continueinput" = "n" ]]; then
     echo "Cancelled by user"
     exit 1
   fi
