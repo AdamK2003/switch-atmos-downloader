@@ -11,10 +11,6 @@ if [[ "`command -v jq`" = "" ]]; then
   echo "jq not found, the script will not work"
   exit 1
 fi
-if [[ "`command -v curl`" = "" ]]; then
-  echo "curl not found, the script will not work"
-  exit 1
-fi
 if [[ "`command -v wget`" = "" ]]; then
   echo "wget not found, the script will not work"
   exit 1
