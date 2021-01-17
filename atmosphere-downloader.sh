@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo "AdamSkI2003\'s Atmosphére downloader"
+echo "AdamSkI2003's Atmosphére downloader"
 
 # NOTE: This script will run interactively if invoked without arguments. It switches to non-interactive mode if a path is passed as an argument.
 
@@ -9,6 +9,10 @@ mismatchcrash="0" # change to 1 to make the script exit with code 2 if it detect
 # check if required packages exist
 if [[ "`command -v jq`" = "" ]]; then
   echo "jq not found, the script will not work"
+  exit 1
+fi
+if [[ "`command -v curl`" = "" ]]; then
+  echo "curl not found, the script will not work"
   exit 1
 fi
 if [[ "`command -v wget`" = "" ]]; then
@@ -204,14 +208,15 @@ echo "icon=bootloader/res/stock_boot.bmp" >> "$path/sd/bootloader/hekate_ipl.ini
 
 # create zip file if zip is installed
 
+cd "$path/sd"
 if [[ "`command -v zip`" != "" ]]; then
-  zip -r $path/sd.zip $path/sd
+  zip -r ../sd.zip ./*
 else
   echo "zip is not installed, unable to automatically create archive"
 fi
 
 # cleanup
 
-rm -rf $path/temp
+rm -rf "$path/temp"
 
 echo "All done!"
