@@ -37,7 +37,7 @@ else # ask user for path
   x="0"
   patharg='0'
   while  [[ $x = "0" ]]; do # loop back to input prompt until path is parsed correctly
-    echo "Destination path:"
+    echo "Destination path (relative paths might be a little buggy):"
     read -p "path > " pathinput
     path="`readlink -m $pathinput`"
     if [[ "$?" != 0 ]]; then # check exit code of readlink command, prompt user to try again if non-zero
